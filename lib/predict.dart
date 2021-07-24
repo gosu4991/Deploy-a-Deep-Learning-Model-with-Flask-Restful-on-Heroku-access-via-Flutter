@@ -41,7 +41,7 @@ class _PredictState extends State<Predict> {
                   child:Text("Pick Image from gallery",),
                   onPressed: ()async
                   {
-                    var pickedFile = await picker.getImage(source: ImageSource.gallery);
+                    var pickedFile = await picker.getImage(source: ImageSource.gallery,maxHeight: 250,maxWidth: 250);
                     final File fileimg = File(pickedFile!.path);
                     pathimg = pickedFile.path;
                     if(pickedFile != null){
@@ -50,8 +50,8 @@ class _PredictState extends State<Predict> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.red,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
                           fontSize: 10.0
                       );
                     }else{
@@ -60,8 +60,8 @@ class _PredictState extends State<Predict> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.red,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
                           fontSize: 10.0
                       );
                     }
@@ -90,14 +90,14 @@ class _PredictState extends State<Predict> {
                         request.files.add(multipartFile);
                         final streamedResponse = await request.send();
                         final response = await http.Response.fromStream(streamedResponse);
-                        if(response.statusCode == 200){
+                        if(response.statusCode != 200){
                           Fluttertoast.showToast(
-                              msg: "Predict Success",
+                              msg: "Fail",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.grey,
-                              textColor: Colors.red,
+                              backgroundColor: Colors.black,
+                              textColor: Colors.white,
                               fontSize: 10.0
                           );
                         }
